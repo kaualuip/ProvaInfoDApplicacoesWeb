@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/Multiplicar.scss'
 
 function Multiplicar() {
@@ -7,8 +8,13 @@ function Multiplicar() {
   const [resultado, setResultado] = useState(null)
 
   const calcular = () => {
-    const multiplicado = parseFloat(num1) * parseFloat(num2)
-    setResultado(multiplicado)
+    const n1 = parseFloat(num1)
+    const n2 = parseFloat(num2)
+    if (isNaN(n1) || isNaN(n2)) {
+      setResultado('Erro: Insira números válidos')
+    } else {
+      setResultado(n1 * n2)
+    }
   }
 
   return (
@@ -31,6 +37,7 @@ function Multiplicar() {
       {resultado !== null && (
         <h2>Resultado: {resultado}</h2>
       )}
+      <Link to="/">Voltar ao Início</Link>
     </div>
   )
 }
